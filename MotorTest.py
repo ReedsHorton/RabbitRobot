@@ -15,7 +15,7 @@ def callback(way):
 
 	pos += way
 
-	print("pos={}".format(pos))
+#	print("pos={}".format(pos))
 
 pi = pigpio.pi()
 
@@ -80,6 +80,8 @@ print("100m = " + str(speed))
 #kit.motor1.throttle = 0
 
 time.sleep(1)
+
+kit.motor1.throttle = None
 
 decoder.cancel()
 
