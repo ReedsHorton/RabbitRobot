@@ -42,7 +42,7 @@ print("100m = " + str(speed))
 
 
 time_now = time.time()
-kit.motor1.throttle = -1.0
+kit.motor1.throttle = 1.0
 time.sleep(.5)
 
 time_before = time.time()
