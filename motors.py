@@ -34,6 +34,14 @@ class DriveTrain:
 		self.motor_L = kit.motor1
 		self.motor_R = kit.motor2
 
+	def shutdown(self):
+
+		self.motor_L.throttle = None
+		self.motor_R.throttle = None
+		self.encoder_R.cancel()
+		self.encoder_L.cancel(())
+		self.pi.stop()
+
 
 if __name__ == '__main__':
 
@@ -43,7 +51,4 @@ if __name__ == '__main__':
 	time.sleep(1)
 	Rabbit.motor_L.throttle = None
 
-
-
-	decoder.cancel()
-	pi.stop()
+	Rabbit.shutdown()
