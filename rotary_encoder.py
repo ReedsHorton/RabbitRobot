@@ -106,14 +106,6 @@ class decoder:
       self.cbA.cancel()
       self.cbB.cancel()
 
-if __name__ == "__main__":
-
-   import time
-   import pigpio
-
-   import rotary_encoder
-
-   pos = 0
 
    def callback(way):
 
@@ -122,6 +114,17 @@ if __name__ == "__main__":
       pos += way
 
       print("pos={}".format(pos))
+
+
+
+if __name__ == "__main__":
+
+   import time
+   import pigpio
+
+   import rotary_encoder
+
+   pos = 0
 
    pi = pigpio.pi()
 
