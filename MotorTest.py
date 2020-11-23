@@ -6,16 +6,18 @@ import math
 import pigpio
 import rotary_encoder
 
+def callback(way):
+	global pos
+
+	pos += way
+
+	print("pos={}".format(pos))
 
 
+
+def main():
 pos = 0
 
-#def callback(way):
-#	global pos
-
-#	pos += way
-
-#	print("pos={}".format(pos))
 
 pi = pigpio.pi()
 
@@ -134,3 +136,9 @@ kit.motor1.throttle = None
 decoder.cancel()
 
 pi.stop()
+
+
+
+
+
+main()
