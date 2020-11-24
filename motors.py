@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 from adafruit_motorkit import MotorKit
 import time
 import math
@@ -8,26 +7,18 @@ import math
 import pigpio
 import rotary_encoder
 
-#def callback_R(way):
-#	global pos_R
-
-#	pos_R += way
-
-#	print("pos_R={}".format(pos_R))
-
-#def callback_L(way):
-#	global pos_L
-
-#	pos_L += way
-
-#	print("pos_L={}".format(pos_L))
-
 
 class DriveTrain:
 
 	def callback_R(self, way):
 		self.pos_R += way
+		if self.pos_R % 48 == 0:
+			time_now = time.time()
+			time_diff = time_now - self.prev_time_R
+			self.prev_time_R = time_now
+			self.speed_R = 1/((48/48)/time_diff*math.pi*.063) * 100 #48 ticks per rotation, 2.5" (.063m) diamater
 		#print("pos_R={}".format(self.pos_R))
+			print("Speed_R={}".format(self.speed_R))
 
 
 	def callback_L(self, way):
@@ -45,6 +36,11 @@ class DriveTrain:
 		kit = MotorKit()
 		self.motor_L = kit.motor1
 		self.motor_R = kit.motor2
+
+		self.prev_time_R = time.time()
+		self.prev_time_L = time.time()
+		self.speed_R = 0
+		self.speed_L = 0
 
 	def drive(self, throttle, dif):
 		self.motor_R.throttle = throttle + dif
