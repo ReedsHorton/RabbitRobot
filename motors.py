@@ -64,8 +64,8 @@ if __name__ == '__main__':
 
 	Rabbit = DriveTrain(R_A, R_B, L_A, L_B)
 
-	Rabbit.drive(.70, .25)	
-	time.sleep(2)
+	Rabbit.drive(.70, .3)	
+	time.sleep(10)
 
 	Rabbit.shutdown()
 
